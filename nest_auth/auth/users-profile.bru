@@ -1,0 +1,19 @@
+meta {
+  name: /users/profile
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/users/profile
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2UxMmQ1Yi0xNmM3LTQ2MmUtOGVhYS04NDQzNDVhMTYxOWIiLCJlbWFpbCI6ImplcmlAZXhhbXBsZS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc1ODA3MjgzNCwiZXhwIjoxNzU4MDc2NDM0fQ.fIcS7yp6Gptk2uo4D0EiQbC018s040LLTsJoK2hWHAo
+}
+
+settings {
+  encodeUrl: true
+}
