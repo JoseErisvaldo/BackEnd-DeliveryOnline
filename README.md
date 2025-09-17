@@ -6,6 +6,7 @@ Minimal scaffold that includes:
 - Docker & docker-compose
 - JWT authentication (login + protected route)
 - Users table with hashed passwords
+- Bruno api - https://www.usebruno.com/
 
 Usage:
 1. Copy `.env.example` to `.env` and adjust variables.
