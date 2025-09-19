@@ -15,6 +15,11 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       database: process.env.DATABASE_NAME || "nestjs_auth",
       entities: [User],
       synchronize: true,
+      extra: process.env.NODE_ENV === 'production' ? {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      } : {}
     }),
     UsersModule,
     AuthModule,
