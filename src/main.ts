@@ -7,8 +7,7 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'https://front-sistema-react-vite.vercel.app', 
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    origin: ['https://delivery-online.netlify.app', 'http://localhost:5173'],
     credentials: true,
   });
 
