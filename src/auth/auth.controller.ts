@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 class RegisterDto {
   email: string;
   password: string;
+  name: string;
 }
 
 class LoginDto {
@@ -17,8 +18,8 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() body: RegisterDto) {
-    if (!body.email || !body.password) throw new BadRequestException('email and password required');
-    return this.authService.register(body.email, body.password);
+    if (!body.email || !body.password || !body.name) throw new BadRequestException('email, password and name required');
+    return this.authService.register(body.email, body.password, body.name);
   }
 
   @Post('login')

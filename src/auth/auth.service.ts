@@ -28,13 +28,13 @@ export class AuthService {
     };
   }
 
-  async register(email: string, password: string) {
+  async register(email: string, password: string, name: string) {
     const existing = await this.usersService.findByEmail(email);
     if (existing) {
       throw new UnauthorizedException("Email already in use");
     }
     const hashed = await bcrypt.hash(password, 10);
-    const user = await this.usersService.create({ email, password: hashed });
+    const user = await this.usersService.create({ email, password: hashed, name: name });
     const { password: _, ...result } = user as any;
     return result;
   }
