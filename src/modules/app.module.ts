@@ -3,6 +3,7 @@ import { UsersModule } from "../users/users.module";
 import { AuthModule } from "../auth/auth.module";
 import { User } from "../users/user.entity";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { Establishment } from "../establishment/entities/establishment.entity";
 
 @Module({
   imports: [
@@ -13,9 +14,9 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       username: process.env.DATABASE_USER || "postgres",
       password: process.env.DATABASE_PASSWORD || "postgres",
       database: process.env.DATABASE_NAME || "nestjs_auth",
-      entities: [User],
+      entities: [User, Establishment],
       synchronize: true,
-      ssl: {
+       ssl: {
         rejectUnauthorized: false,
       },
     }),
