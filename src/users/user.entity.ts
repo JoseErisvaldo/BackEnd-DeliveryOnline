@@ -1,4 +1,4 @@
-import { Establishment } from "src/establishment/entities/establishment.entity";
+import { Establishment } from "../establishment/entities/establishment.entity";
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 
 @Entity({ name: "users" })
