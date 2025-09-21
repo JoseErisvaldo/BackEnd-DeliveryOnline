@@ -6,11 +6,11 @@
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts",
     "build": "tsc -p tsconfig.build.json",
-    "start:prod": "npx typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts && node dist/main.js",
-    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/database/data-source.ts",
-    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
-    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/database/data-source.ts",
-    "migration:create": "typeorm-ts-node-commonjs migration:create"
+    "start:prod": "npx typeorm-ts-node-commonjs migration:run -d dist/database/data-source.js && node dist/main.js",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d dist/database/data-source.js",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d dist/database/data-source.js",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d dist/database/data-source.js",
+    "migration:create": "typeorm-ts-node-commonjs migration:create -d dist/database/data-source.js"
   },
   "dependencies": {
     "@nestjs/class-transformer": "^0.4.0",

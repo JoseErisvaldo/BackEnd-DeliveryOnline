@@ -1,7 +1,8 @@
+// src/database/data-source.ts
 import 'reflect-metadata';
-import { Establishment } from '../establishment/entities/establishment.entity';
-import { User } from '../users/user.entity';
 import { DataSource } from 'typeorm';
+import { User } from '../users/user.entity';
+import { Establishment } from '../establishment/entities/establishment.entity';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -11,9 +12,7 @@ export const AppDataSource = new DataSource({
   password: process.env.DATABASE_PASSWORD || 'postgres',
   database: process.env.DATABASE_NAME || 'nestjs_auth',
   entities: [User, Establishment],
-  migrations: ['src/migrations/*.ts'],
-  synchronize: false, 
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  migrations: ['dist/migrations/*.js'],
+  synchronize: false,
+  
 });
