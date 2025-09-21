@@ -7,7 +7,7 @@ import { JwtService } from "@nestjs/jwt";
 export class AuthService {
   constructor(
     private usersService: UsersService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   async validateUser(email: string, pass: string) {
@@ -34,7 +34,11 @@ export class AuthService {
       throw new UnauthorizedException("Email already in use");
     }
     const hashed = await bcrypt.hash(password, 10);
-    const user = await this.usersService.create({ email, password: hashed, name: name });
+    const user = await this.usersService.create({
+      email,
+      password: hashed,
+      name: name,
+    });
     const { password: _, ...result } = user as any;
     return result;
   }

@@ -1,17 +1,24 @@
 meta {
-  name: /users/profile
+  name: establishment/update
   type: http
-  seq: 3
+  seq: 5
 }
 
-get {
-  url: http://localhost:3000/users/profile
-  body: none
+patch {
+  url: http://localhost:3001/establishments/da097a5f-0ecb-48d1-aabd-72981a79b4a7
+  body: json
   auth: bearer
 }
 
 auth:bearer {
   token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZDU1MTQ3Mi00NjI2LTRlZjMtOTEyNC01NjZkZGRlOTQyYTgiLCJlbWFpbCI6Impvc2VAdGVzdC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc1ODQxODc0NCwiZXhwIjoxNzU4NDIyMzQ0fQ.AqB3RAAO83IcoV_sfIHMx0oHGBxrVc4iSZtWg27ao1s
+}
+
+body:json {
+  {
+    "name": "empresa do José",
+    "address": "endereço do Jose"
+  }
 }
 
 settings {
