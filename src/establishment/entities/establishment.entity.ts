@@ -1,3 +1,6 @@
+
+
+import { Status } from "../../status/status.entity";
 import { User } from "../../users/user.entity";
 import {
   Entity,
@@ -51,8 +54,8 @@ export class Establishment {
   @Column({ nullable: true })
   zipCode?: string;
 
-  @Column({ nullable: true, default: "active" })
-  status?: string;
+  @ManyToOne(() => Status, { eager: true })
+  status?: Status;
 
   @CreateDateColumn()
   created_at: Date;
