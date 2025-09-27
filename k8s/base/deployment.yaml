@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: nestjs-auth
-          image: seu-usuario/seu-projeto-nestjs:latest
+          image: jerisantos/nestjs-auth:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3333
