@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nestjs-auth
+  name: nestjs-auth-deployment
   namespace: delivery
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nestjs-auth
@@ -15,6 +15,10 @@ spec:
     spec:
       containers:
         - name: nestjs-auth
-          image: joseerisvaldo/nestjs-auth:latest
+          image: seu-usuario/seu-projeto-nestjs:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3333
+          env:
+            - name: NODE_ENV
+              value: "production"
