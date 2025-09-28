@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Minimal NestJS + TypeORM + Postgres + Docker project with JWT auth",
   "scripts": {
-    "start": "ts-node -r tsconfig-paths/register src/main.ts",
-    "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "start": "docker compose up -d && nest start --watch",
     "build": "tsc -p tsconfig.build.json",
     "start:prod": "npx typeorm-ts-node-commonjs migration:run -d dist/database/data-source.js && node dist/main.js",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate -d dist/database/data-source.js",
