@@ -1,9 +1,57 @@
-import { IsNotEmpty, IsOptional } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, MaxLength, IsNumber } from 'class-validator';
 
 export class CreateEstablishmentDto {
   @IsNotEmpty()
-  name!: string;
+  @IsString()
+  @MaxLength(150)
+  name: string;
 
   @IsOptional()
-  address: string;
+  @IsString()
+  @MaxLength(255)
+  address?: string;
+
+  @IsOptional()
+  @IsString()
+  street?: string;
+
+  @IsOptional()
+  @IsString()
+  number?: string;
+
+  @IsOptional()
+  @IsString()
+  complement?: string;
+
+  @IsOptional()
+  @IsString()
+  neighborhood?: string;
+
+  @IsOptional()
+  @IsString()
+  city?: string;
+
+  @IsOptional()
+  @IsString()
+  state?: string;
+
+  @IsOptional()
+  @IsString()
+  country?: string;
+
+  @IsOptional()
+  @IsString()
+  zipCode?: string;
+
+  @IsOptional()
+  @IsString()
+  photo?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  ownerId: string;
+
+  @IsOptional()
+  @IsNumber()
+  statusId?: number;
 }
