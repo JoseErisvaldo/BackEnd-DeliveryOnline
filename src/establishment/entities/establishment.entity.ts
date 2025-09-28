@@ -54,6 +54,9 @@ export class Establishment {
   @Column({ nullable: true })
   zipCode?: string;
 
+  @Column({ nullable: true })
+  photo: string;
+
   @ManyToOne(() => Status, { eager: true })
   status?: Status;
 
