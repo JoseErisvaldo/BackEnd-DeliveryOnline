@@ -1,6 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Product } from '../products/entities/product.entity';
 import { Establishment } from '../establishment/entities/establishment.entity';
+import { Category } from '../categorys/entities/category.entity';
+import { Ingredient } from '../ingredients/entities/ingredient.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -24,6 +26,12 @@ export class User {
 
   @OneToMany(() => Product, (product) => product.user)
   products: Product[];
+
+  @OneToMany(() => Category, (category) => category.user)
+  categories: Category[];
+
+  @OneToMany(() => Ingredient, (category) => category.user)
+  ingredient: Category[];
 
   @Column({ nullable: true })
   street?: string;
