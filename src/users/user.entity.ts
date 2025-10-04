@@ -1,9 +1,10 @@
-import { Establishment } from "../establishment/entities/establishment.entity";
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Product } from '../products/entities/product.entity';
+import { Establishment } from '../establishment/entities/establishment.entity';
 
-@Entity({ name: "users" })
+@Entity({ name: 'users' })
 export class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -15,13 +16,16 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ default: "user" })
+  @Column({ default: 'user' })
   role: string;
 
   @OneToMany(() => Establishment, (establishment) => establishment.owner)
   establishments: Establishment[];
 
- @Column({ nullable: true })
+  @OneToMany(() => Product, (product) => product.user)
+  products: Product[];
+
+  @Column({ nullable: true })
   street?: string;
 
   @Column({ nullable: true })
@@ -47,4 +51,5 @@ export class User {
 
   @Column({ nullable: true, default: "active" })
   status?: string;
+
 }

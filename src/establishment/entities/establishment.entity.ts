@@ -1,36 +1,27 @@
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { User } from '../../users/user.entity';
+import { Product } from '../../products/entities/product.entity';
+import { Status } from '../../status/status.entity';
 
-
-import { Status } from "../../status/status.entity";
-import { User } from "../../users/user.entity";
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  ManyToOne,
-  OneToMany,
-} from "typeorm";
-//import { Product } from '../../product/entities/product.entity';
-
-@Entity("establishments")
+@Entity('establishments')
 export class Establishment {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: "varchar", length: 150 })
+  @Column({ type: 'varchar', length: 150 })
   name: string;
 
-  @Column({ type: "varchar", length: 255, nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   address: string;
 
   @ManyToOne(() => User, (user) => user.establishments, { eager: true })
+  @JoinColumn({ name: 'owner_id' })
   owner: User;
 
-  /*@OneToMany(() => Product, (product) => product.establishment)
-  products: Product[];*/
+  @OneToMany(() => Product, (product) => product.establishment)
+  products: Product[];
 
-   @Column({ nullable: true })
+  @Column({ nullable: true })
   street?: string;
 
   @Column({ nullable: true })
@@ -55,7 +46,7 @@ export class Establishment {
   zipCode?: string;
 
   @Column({ nullable: true })
-  photo: string;
+  photo?: string;
 
   @ManyToOne(() => Status, { eager: true })
   status?: Status;

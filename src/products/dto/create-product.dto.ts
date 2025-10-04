@@ -13,7 +13,7 @@ export class CreateProductDto {
 
   @IsBoolean()
   @IsOptional()
-  isActive?: boolean;
+  is_active?: boolean;
 
   @IsString()
   @IsOptional()
@@ -21,7 +21,7 @@ export class CreateProductDto {
 
   @IsUUID()
   @IsOptional()
-  categoryId?: string;
+  category_id?: string;
 
   @IsString()
   @IsOptional()

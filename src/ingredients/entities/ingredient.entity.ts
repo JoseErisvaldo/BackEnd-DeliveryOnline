@@ -1,21 +1,24 @@
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Product } from '../../products/entities/product.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 
-@Entity({ name: 'ingredient' })
+@Entity({ name: 'ingredients' })
 export class Ingredient {
   @PrimaryGeneratedColumn({ name: 'ingredient_id', type: 'bigint' })
   ingredientId: number;
 
-  @Column({ type: 'bigint', nullable: true })
-  sku: number;
-
-  @Column({ type: 'double precision', nullable: true })
+  @Column({ name: 'price', type: 'double precision', nullable: true })
   price: number;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ name: 'description', type: 'varchar', nullable: true })
   description: string;
 
   @ManyToOne(() => Product, (product) => product.ingredients, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'sku', referencedColumnName: 'productId' })
+  @JoinColumn({ name: 'product_id' })
   product: Product;
+
+  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamptz' })
+  updatedAt: Date;
 }
