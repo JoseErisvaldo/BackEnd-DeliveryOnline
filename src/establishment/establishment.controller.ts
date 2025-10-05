@@ -16,19 +16,20 @@ import { EstablishmentResponseDto } from "./dto/establishment-response.dto";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 
 @Controller("establishments")
-@UseGuards(JwtAuthGuard) // todas as rotas privadas
+@UseGuards(JwtAuthGuard)
 export class EstablishmentController {
-  constructor(private readonly establishmentService: EstablishmentService) {}
+  constructor(
+    private readonly establishmentService: EstablishmentService,
+  ) {}
 
   @Post()
-  create(
-    @Body() createEstablishmentDto: CreateEstablishmentDto,
-    @Request() req,
-  ): Promise<EstablishmentResponseDto> {
-    return this.establishmentService.create(
-      createEstablishmentDto,
-      req.user.id,
-    );
+  async create(@Body() body: CreateEstablishmentDto & { userId: string }) {
+    const createEstablishmentDto: CreateEstablishmentDto = {
+      ...body,
+      ownerId: body.userId,
+    };
+    delete (createEstablishmentDto as any).userId;
+    return this.establishmentService.create(createEstablishmentDto, body.userId);
   }
 
   @Get()

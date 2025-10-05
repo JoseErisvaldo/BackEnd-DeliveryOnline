@@ -11,11 +11,8 @@ export class EstablishmentService {
   constructor(
     private readonly establishmentRepository: EstablishmentRepository,
   ) {}
-  async create(
-    createEstablishmentDto: CreateEstablishmentDto,
-    ownerId: string,
-  ) {
-    console.log("for ownerId:", ownerId);
+
+  async create(createEstablishmentDto: CreateEstablishmentDto, ownerId: string) {
     const establishment = this.establishmentRepository.create({
       ...createEstablishmentDto,
       owner: { id: ownerId } as User,
