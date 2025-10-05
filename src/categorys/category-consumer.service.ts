@@ -1,27 +1,31 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { RabbitMqService } from '../rabbitmq/rabbitmq.service';
 import { CategorysService } from './categorys.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
+import { RabbitEventsCreated } from '../rabbitmq/events/category/rabbitmq-created.config';
 
 @Injectable()
 export class CategoryConsumerService implements OnModuleInit {
+  private readonly logger = new Logger(CategoryConsumerService.name);
   constructor(
     private readonly rabbitMqService: RabbitMqService,
     private readonly categorysService: CategorysService,
   ) {}
 
   async onModuleInit() {
+    const events = RabbitEventsCreated.CATEGORY_CREATED;
+    
     await this.rabbitMqService.consume(
-      'categorys-exchange',
-      'fila-categorys',
-      'category.criado',
+      events.exchange,
+      events.queue,
+      events.routingKey,
       async (msg: CreateCategoryDto) => {
-        console.log('💡 Mensagem recebida:', msg.userId);
+        this.logger.log('Mensagem recebida:', msg.userId);
         try {
           await this.categorysService.create(msg);
-          console.log('Categoria salva no banco', msg.userId);
+          this.logger.log('Categoria salva no banco', msg.userId);
         } catch (err) {
-          console.error('Erro ao salvar categoria:', err);
+          this.logger.error('Erro ao salvar categoria:', err);
         }
       },
     );

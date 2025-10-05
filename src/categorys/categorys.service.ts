@@ -1,4 +1,3 @@
-// src/categorys/categorys.service.ts
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -15,7 +14,7 @@ export class CategorysService {
     private readonly userRepo: Repository<User>,
   ) {}
 
-  async create(dto: CreateCategoryDto & { userId: string }) {
+  async create(dto: CreateCategoryDto) {
     const user = await this.userRepo.findOne({ where: { id: dto.userId } });
     if (!user) throw new Error('Usuário não encontrado');
 
