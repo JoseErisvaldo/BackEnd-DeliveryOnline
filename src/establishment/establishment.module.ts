@@ -6,7 +6,7 @@ import { EstablishmentController } from "./establishment.controller";
 import { UsersModule } from "../users/users.module";
 import { User } from "../users/user.entity";
 import { EstablishmentRepository } from "./establishment.repository";
-import { RabbitMqService } from "src/rabbitmq/rabbitmq.service";
+import { RabbitMqService } from "../rabbitmq/rabbitmq.service";
 import { EstablishmentConsumerService } from "./establishment-consumer.service";
 
 @Module({
